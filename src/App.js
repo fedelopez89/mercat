@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+// Components
+import MainHeader from "./components/MainHeader/MainHeader";
+import ListProducts from "./components/ListProducts/ListProducts";
+import SearchProduct from "./components/SearchProduct/SearchProduct";
+import CartProvider from "./contexts/CartProvider/CartProvider";
+import Checkout from "./components/Checkout/Checkout";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
+// Styles
+import { DivApp } from "./styles";
 
 function App() {
+  const [productSearched, setProductSearched] = useState("");
+
+  const searchProduct = (enteredText) => {
+    setProductSearched(enteredText);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DivApp>
+      <CartProvider>
+        <MainHeader />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SearchProduct onSearchProduct={searchProduct} />
+                <ListProducts productSearched={productSearched}></ListProducts>
+              </>
+            }
+          ></Route>
+          <Route path="/id=:productId" element={<ProductDetail />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
+        </Routes>
+      </CartProvider>
+    </DivApp>
   );
 }
 
