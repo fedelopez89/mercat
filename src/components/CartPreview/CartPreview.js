@@ -1,4 +1,9 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+// Components
+import Modal from "../../UI/Modal";
+import Button from "../Button/Button";
+// Stores
 import {
   CartStateContext,
   CartDispatchContext,
@@ -7,8 +12,6 @@ import {
   addToCart,
   toggleCartPopup,
 } from "../../contexts/CartProvider/CartProvider";
-import Modal from "../../UI/Modal";
-import Button from "../Button/Button";
 // Styles
 import * as S from "./styles";
 
@@ -22,14 +25,6 @@ const CartPreview = () => {
 
   const handleReduce = (productId) => {
     return reduceFromCart(dispatch, productId);
-  };
-
-  const handleButtonCheckout = (items) => {
-    const totalPrice = items.reduce(
-      (acu, cur) => acu + cur.quantity * cur.price,
-      0
-    );
-    return alert("Total Price is : $" + parseFloat(totalPrice).toFixed(2));
   };
 
   const handleAddProduct = (product) => {
@@ -64,7 +59,6 @@ const CartPreview = () => {
                     <Button
                       type="submit"
                       onClick={() => handleRemove(product.id)}
-                      style1={{marginBottom: "15px !important"}}
                     >
                       X
                     </Button>
@@ -73,7 +67,6 @@ const CartPreview = () => {
                     <Button
                       type="submit"
                       onClick={() => handleReduce(product.id)}
-                      style1={{marginBottom: "5px !important"}}                      
                     >
                       -
                     </Button>
@@ -90,9 +83,11 @@ const CartPreview = () => {
           })}
       </S.CartItems>
       <S.ButtonProceed>
-        <Button type="submit" onClick={() => handleButtonCheckout(items)}>
-          CHECKOUT
-        </Button>
+        <Link to="/checkout">
+          <Button type="submit" onClick={() => toggleCartPopup(dispatch)}>
+            CHECKOUT
+          </Button>
+        </Link>
         <Button type="submit" onClick={() => toggleCartPopup(dispatch)}>
           CLOSE
         </Button>
