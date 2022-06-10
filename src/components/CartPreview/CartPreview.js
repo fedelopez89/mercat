@@ -5,12 +5,15 @@ import {
   reduceFromCart,
   removeFromCart,
   addToCart,
+  toggleCartPopup,
 } from "../../contexts/CartProvider/CartProvider";
+import Modal from "../../UI/Modal";
+import Button from "../Button/Button";
 // Styles
 import * as S from "./styles";
 
 const CartPreview = () => {
-  const { items, isCartOpen } = useContext(CartStateContext);
+  const { items } = useContext(CartStateContext);
   const dispatch = useContext(CartDispatchContext);
 
   const handleRemove = (productId) => {
@@ -34,7 +37,7 @@ const CartPreview = () => {
   };
 
   return (
-    <S.CartPreview>
+    <Modal onClose={() => toggleCartPopup(dispatch)}>
       <S.CartItems>
         {items.length < 1 && <S.NoData>No products added.</S.NoData>}
         {items.length > 0 &&
@@ -58,31 +61,43 @@ const CartPreview = () => {
                 </S.ProductTotal>
                 <S.ProductOptions>
                   {product.quantity === 1 && (
-                    <S.ProductButton onClick={() => handleRemove(product.id)}>
-                      x
-                    </S.ProductButton>
+                    <Button
+                      type="submit"
+                      onClick={() => handleRemove(product.id)}
+                      style1={{marginBottom: "15px !important"}}
+                    >
+                      X
+                    </Button>
                   )}
                   {product.quantity > 1 && (
-                    <S.ProductButton onClick={() => handleReduce(product.id)}>
+                    <Button
+                      type="submit"
+                      onClick={() => handleReduce(product.id)}
+                      style1={{marginBottom: "5px !important"}}                      
+                    >
                       -
-                    </S.ProductButton>
+                    </Button>
                   )}
-
-                  <S.ProductButton onClick={() => handleAddProduct(product)}>
+                  <Button
+                    type="submit"
+                    onClick={() => handleAddProduct(product)}
+                  >
                     +
-                  </S.ProductButton>
+                  </Button>
                 </S.ProductOptions>
               </S.CartItem>
             );
           })}
       </S.CartItems>
-      <S.ButtonProceed
-        type="button"
-        onClick={() => handleButtonCheckout(items)}
-      >
-        PROCEED TO CHECKOUT
+      <S.ButtonProceed>
+        <Button type="submit" onClick={() => handleButtonCheckout(items)}>
+          CHECKOUT
+        </Button>
+        <Button type="submit" onClick={() => toggleCartPopup(dispatch)}>
+          CLOSE
+        </Button>
       </S.ButtonProceed>
-    </S.CartPreview>
+    </Modal>
   );
 };
 

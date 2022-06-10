@@ -11,6 +11,7 @@ export const Button = styled.button`
   background: darkorange;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
   cursor: pointer;
+  margin-bottom: 5px;
   &:focus {
     outline: none;
   }
