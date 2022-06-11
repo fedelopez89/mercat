@@ -1,21 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 // Components
-import MainHeader from "./components/MainHeader/MainHeader";
-import ListProducts from "./components/ListProducts/ListProducts";
-import SearchProduct from "./components/SearchProduct/SearchProduct";
-import { CartStateContext } from "./contexts/CartProvider/CartProvider";
+import CartPreview from "./components/CartPreview/CartPreview";
 import Checkout from "./components/Checkout/Checkout";
+import ListProducts from "./components/ListProducts/ListProducts";
+import MainHeader from "./components/MainHeader/MainHeader";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
-// Store
-
+import SearchProduct from "./components/SearchProduct/SearchProduct";
+// Redux
+import { useSelector } from "react-redux";
 // Styles
 import { DivApp } from "./styles";
-import CartPreview from "./components/CartPreview/CartPreview";
 
 function App() {
+  const isCartOpen = useSelector((state) => state.isCartOpen);
   const [productSearched, setProductSearched] = useState("");
-  const { isCartOpen } = useContext(CartStateContext);
 
   const searchProduct = (enteredText) => {
     setProductSearched(enteredText);

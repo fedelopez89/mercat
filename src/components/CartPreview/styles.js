@@ -8,7 +8,7 @@ export const CartItems = styled.ul`
 export const NoData = styled.p`
   align-items: center;
   display: flex;
-  margin-top: 40%;
+  margin-top: 0%;
   justify-content: center;
 `;
 

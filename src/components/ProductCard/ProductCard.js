@@ -1,33 +1,32 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  CartDispatchContext,
-  addToCart,
-} from "../../contexts/CartProvider/CartProvider";
 import Button from "../Button/Button";
+// Redux
+import { useDispatch } from "react-redux";
+import { cartItemsActions } from "../../store/index";
 // Styles
 import * as S from "./styles";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+  //
   const { id, name, type, image, price } = product;
   const [isAdded, setIsAdded] = useState(false);
-  const dispatch = useContext(CartDispatchContext);
 
   const onAddProduct = () => {
-    const productWithQuantity = { ...product, quantity: 1 };
-    addToCart(dispatch, productWithQuantity);
+    dispatch(cartItemsActions.addToCart(product));
     setIsAdded(true);
     setTimeout(() => {
       setIsAdded(false);
-    }, 1500);
+    }, 1000);
   };
 
   return (
     <S.ProductCard>
       <Link to={`/id=${id}`}>
-      <S.ContainerImg>
-        <S.imgURL src={image} alt={name}></S.imgURL>
-      </S.ContainerImg>
+        <S.ContainerImg>
+          <S.imgURL src={image} alt={name}></S.imgURL>
+        </S.ContainerImg>
       </Link>
       <S.ProductName>{name}</S.ProductName>
       <S.ProductType>{type}</S.ProductType>

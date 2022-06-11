@@ -1,38 +1,36 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 // Components
 import Modal from "../../UI/Modal";
 import Button from "../Button/Button";
-// Stores
-import {
-  CartStateContext,
-  CartDispatchContext,
-  reduceFromCart,
-  removeFromCart,
-  addToCart,
-  toggleCartPopup,
-} from "../../contexts/CartProvider/CartProvider";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsActions } from "../../store/index";
 // Styles
 import * as S from "./styles";
 
 const CartPreview = () => {
-  const { items } = useContext(CartStateContext);
-  const dispatch = useContext(CartDispatchContext);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items);
 
   const handleRemove = (productId) => {
-    return removeFromCart(dispatch, productId);
+    dispatch(cartItemsActions.removeFromCart(productId));
   };
 
   const handleReduce = (productId) => {
-    return reduceFromCart(dispatch, productId);
+    dispatch(cartItemsActions.decrement(productId));
   };
 
   const handleAddProduct = (product) => {
-    addToCart(dispatch, { ...product, quantity: 1 });
+    dispatch(cartItemsActions.addToCart(product));
+  };
+
+  const toggleCartPopupHandler = () => {
+    dispatch(cartItemsActions.toggleCartPreview());
   };
 
   return (
-    <Modal onClose={() => toggleCartPopup(dispatch)}>
+    <Modal onClose={toggleCartPopupHandler}>
       <S.CartItems>
         {items.length < 1 && <S.NoData>No products added.</S.NoData>}
         {items.length > 0 &&
@@ -84,11 +82,11 @@ const CartPreview = () => {
       </S.CartItems>
       <S.ButtonProceed>
         <Link to="/checkout">
-          <Button type="submit" onClick={() => toggleCartPopup(dispatch)}>
+          <Button type="submit" onClick={toggleCartPopupHandler}>
             CHECKOUT
           </Button>
         </Link>
-        <Button type="submit" onClick={() => toggleCartPopup(dispatch)}>
+        <Button type="submit" onClick={toggleCartPopupHandler}>
           CLOSE
         </Button>
       </S.ButtonProceed>

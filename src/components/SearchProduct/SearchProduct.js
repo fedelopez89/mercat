@@ -1,20 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Button from "../Button/Button";
-import {
-  CartStateContext,
-  CartDispatchContext,
-  toggleCartPopup,
-} from "../../contexts/CartProvider/CartProvider";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsActions } from "../../store/index";
 // Styles
 import * as S from "./styles";
 
 const SearchProduct = ({ onSearchProduct }) => {
-  const { items: cartItems } = useContext(CartStateContext);
-  const cartDispatch = useContext(CartDispatchContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.items);
   const cartQuantity = cartItems.length;
-  const cartTotal = cartItems
-    .map((item) => item.price * item.quantity)
-    .reduce((prev, current) => prev + current, 0);
 
   const [enteredValue, setEnteredValue] = useState("");
 
@@ -27,9 +22,8 @@ const SearchProduct = ({ onSearchProduct }) => {
     onSearchProduct(enteredValue);
   };
 
-  const handleCartButton = (event) => {
-    event.preventDefault();
-    return toggleCartPopup(cartDispatch);
+  const handleCartButton = () => {
+    dispatch(cartItemsActions.toggleCartPreview());
   };
 
   return (

@@ -21,7 +21,7 @@ const ListProducts = ({ productSearched }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    if (productSearched.length>0) {
+    if (productSearched.length>0 && listFullProduct.length>0) {
       const productsFiltered = filterProducts(productSearched);
       setListProduct(productsFiltered);
       setAmiiLength(productsFiltered.length);

@@ -1,20 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 // Components
 import Button from "../Button/Button";
-// Stores
-import {
-  CartStateContext,
-  CartDispatchContext,
-  reduceFromCart,
-  removeFromCart,
-  addToCart,
-} from "../../contexts/CartProvider/CartProvider";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { cartItemsActions } from "../../store/index";
 // Styles
 import * as S from "./styles";
 
 const Checkout = () => {
-  const { items } = useContext(CartStateContext);
-  const dispatch = useContext(CartDispatchContext);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items);
 
   const totalAmount = () => {
     const totalPrice = items.reduce(
@@ -25,15 +20,15 @@ const Checkout = () => {
   };
 
   const handleRemove = (productId) => {
-    return removeFromCart(dispatch, productId);
+    dispatch(cartItemsActions.removeFromCart(productId));
   };
 
   const handleReduce = (productId) => {
-    return reduceFromCart(dispatch, productId);
+    dispatch(cartItemsActions.decrement(productId));
   };
 
   const handleAddProduct = (product) => {
-    addToCart(dispatch, { ...product, quantity: 1 });
+    dispatch(cartItemsActions.addToCart(product));
   };
 
   const listItems = (
