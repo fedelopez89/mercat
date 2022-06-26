@@ -5,11 +5,13 @@ import logo from "./../../assets/mercat-black-2021.png";
 
 const MainHeader = () => {
   return (
-    <Link to="/">
-      <header style={{ display: "flex", justifyContent: "center" }}>
-        <img src={logo} alt="background" style={{ width: "35vw" }} />
-      </header>
-    </Link>
+    <header>
+      <Link to="/">
+        <header style={{ display: "flex", justifyContent: "center" }}>
+          <img src={logo} alt="background" style={{ width: "35vw" }} />
+        </header>
+      </Link>
+    </header>
   );
 };
 
