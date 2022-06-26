@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Mercat E-commmerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed with React using: 
+* Router
+* Redux (Reduxjs/Toolkit)
+* Styled-Component
 
-## Available Scripts
+# How to run App
 
-In the project directory, you can run:
+1. Open a Terminal
+2. Type 'git clone project 'nameProject'
+3. Redirect to path (cd 'nameProject') and run 'npm install'
+4. Run on terminal: `npm run start`
+5. Open browser and go to LOCALHOST (by default: http://localhost:3000/) to see FrontEnd App.
+6. Ready to test App :)
 
-### `npm start`
+# How does the page looks?
+<img width="1517" alt="image" src="https://user-images.githubusercontent.com/1664426/173175198-f8a7e1a9-a38e-40ee-bf19-ec91fd77a6f9.png">
+<img width="1518" alt="image" src="https://user-images.githubusercontent.com/1664426/173175207-97601496-1791-485e-ba88-ad3815741c6a.png">
+<img width="1501" alt="image" src="https://user-images.githubusercontent.com/1664426/173175227-ed1c2816-9a44-4439-9ba4-84f6f16d9da7.png">
+<img width="1509" alt="image" src="https://user-images.githubusercontent.com/1664426/173175231-2db65de2-510f-4eac-9c2d-6717ddc2151c.png">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
+* Display a list of products from API https://www.amiiboapi.com/
+* Select a product and be added to the shopping cart
+* Open the shopping cart to display all the added products. Add more products or remove them.
+* Checkout option to see all the products and total amount.
 
-### `npm test`
+## Special Features
+* Search Nav: for searching for a specific product
+* More Details: clicking on product's image you'll be redirected to a Detailed Page with all the information about the product.
+* Pagination: at the bottom of the page you have the selected page's number and you can move forward.
+* Clicking on "Mercat" you'll be redirect to the HOME.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+fede.lopez89@gmail.com
