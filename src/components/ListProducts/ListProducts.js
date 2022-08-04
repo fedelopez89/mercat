@@ -42,8 +42,8 @@ const ListProducts = ({ productSearched }) => {
     if (listProduct.length > 0) {
       content = listProduct
         .slice(
-          1 + numberOfResults * (page - 1),
-          numberOfResults + 1 + numberOfResults * (page - 1)
+          numberOfResults * (page - 1),
+          numberOfResults + numberOfResults * (page - 1)
         )
         .map((product) => {
           return <ProductCard key={product.id} product={product} />;
